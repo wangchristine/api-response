@@ -2,7 +2,8 @@
 
 namespace CHHW\ApiResponse;
 
-use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 
 class ApiResponse
 {
@@ -33,35 +34,53 @@ class ApiResponse
 
     private function formatPaginate()
     {
-        // dd($this->data->toArray());
         return [
             "data" => $this->data->toArray()['data'],
             "links" => [
                 "first" => $this->data->toArray()['first_page_url'],
-                "last" => $this->data->toArray()['last_page_url'],   // optional
+                "last" => $this->data->toArray()['last_page_url'],
                 "prev" => $this->data->toArray()['prev_page_url'],
                 "next" => $this->data->toArray()['next_page_url']
             ],
             "meta" => [
                 "current_page" => $this->data->toArray()['current_page'],
                 "from" => $this->data->toArray()['from'],
-                "last_page" => $this->data->toArray()['last_page'],  // optional
+                "last_page" => $this->data->toArray()['last_page'],
                 "path" => $this->data->toArray()['path'],
                 "per_page" => $this->data->toArray()['per_page'],
                 "to" => $this->data->toArray()['to'],
-                "total" => $this->data->toArray()['total']    // optional
+                "total" => $this->data->toArray()['total']
             ]
         ];
+    }
 
-        // return $this->data;
+    private function formatSimplePaginate()
+    {
+        return [
+            "data" => $this->data->toArray()['data'],
+            "links" => [
+                "first" => $this->data->toArray()['first_page_url'],
+                "prev" => $this->data->toArray()['prev_page_url'],
+                "next" => $this->data->toArray()['next_page_url']
+            ],
+            "meta" => [
+                "current_page" => $this->data->toArray()['current_page'],
+                "from" => $this->data->toArray()['from'],
+                "path" => $this->data->toArray()['path'],
+                "per_page" => $this->data->toArray()['per_page'],
+                "to" => $this->data->toArray()['to']
+            ]
+        ];
     }
 
     private function setData($data)
     {
         $this->data = $data;
 
-        if ($data instanceof AbstractPaginator) {
+        if ($data instanceof LengthAwarePaginator) {
             return $this->formatPaginate();
+        } else if ($data instanceof Paginator) {
+            return $this->formatSimplePaginate();
         } else {
             return $this->format();
         }
