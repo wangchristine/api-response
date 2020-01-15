@@ -1,8 +1,8 @@
 <?php
 
-namespace CHHW\ApiResponse;
+namespace CHHW\ApiResponse\Builders;
 
-class ResponseBuilder
+abstract class ResponseBuilder
 {
-
+    protected $format;
 }

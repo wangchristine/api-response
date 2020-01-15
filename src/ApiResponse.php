@@ -19,6 +19,8 @@ class ApiResponse extends ApiResponseBase implements JsonResponse
         $this->data  = $data;
         $this->status = $status;
         $this->code = $code;
+
+        return $this;
     }
 
     public function error($data = [], $status = 500, $code = "500")
@@ -27,6 +29,8 @@ class ApiResponse extends ApiResponseBase implements JsonResponse
         $this->data  = $data;
         $this->status = $status;
         $this->code = $code;
+
+        return $this;
     }
 
 }

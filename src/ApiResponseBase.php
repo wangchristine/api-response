@@ -2,6 +2,9 @@
 
 namespace CHHW\ApiResponse;
 
+use CHHW\ApiResponse\Builders\ErrorResponseBuilder;
+use CHHW\ApiResponse\Builders\SuccessResponseBuilder;
+
 class ApiResponseBase
 {
     protected $data = [];
@@ -14,7 +17,17 @@ class ApiResponseBase
     public function json()
     {
         $builder = $this->success ? new SuccessResponseBuilder() : new ErrorResponseBuilder();
-        return response()->json($builder->format($this->data), $this->status, $this->headers, $this->options);
+        return response()->json(
+            $builder->formatResponse([
+                'data' => $this->data,
+                'status' => $this->status,
+                'success' => $this->success,
+                'code' => $this->code
+            ]),
+            $this->status,
+            $this->headers,
+            $this->options
+        );
     }
 
     public function setHeader($headers)
