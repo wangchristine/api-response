@@ -5,7 +5,7 @@ namespace CHHW\ApiResponse;
 use CHHW\ApiResponse\Builders\ErrorResponseBuilder;
 use CHHW\ApiResponse\Builders\SuccessResponseBuilder;
 
-class ApiResponseBase
+abstract class ApiResponseBase
 {
     protected $data = [];
     protected $status = 200;
@@ -54,55 +54,5 @@ class ApiResponseBase
 //            return $this->format();
 //        }
 //    }
-
-    private function format()
-    {
-        return [
-            "data" => $this->data,
-            "links" => null,
-            "meta" => null
-        ];
-    }
-
-    private function formatPaginate()
-    {
-        return [
-            "data" => $this->data->toArray()['data'],
-            "links" => [
-                "first" => $this->data->toArray()['first_page_url'],
-                "last" => $this->data->toArray()['last_page_url'],
-                "prev" => $this->data->toArray()['prev_page_url'],
-                "next" => $this->data->toArray()['next_page_url']
-            ],
-            "meta" => [
-                "current_page" => $this->data->toArray()['current_page'],
-                "from" => $this->data->toArray()['from'],
-                "last_page" => $this->data->toArray()['last_page'],
-                "path" => $this->data->toArray()['path'],
-                "per_page" => $this->data->toArray()['per_page'],
-                "to" => $this->data->toArray()['to'],
-                "total" => $this->data->toArray()['total']
-            ]
-        ];
-    }
-
-    private function formatSimplePaginate()
-    {
-        return [
-            "data" => $this->data->toArray()['data'],
-            "links" => [
-                "first" => $this->data->toArray()['first_page_url'],
-                "prev" => $this->data->toArray()['prev_page_url'],
-                "next" => $this->data->toArray()['next_page_url']
-            ],
-            "meta" => [
-                "current_page" => $this->data->toArray()['current_page'],
-                "from" => $this->data->toArray()['from'],
-                "path" => $this->data->toArray()['path'],
-                "per_page" => $this->data->toArray()['per_page'],
-                "to" => $this->data->toArray()['to']
-            ]
-        ];
-    }
 
 }
