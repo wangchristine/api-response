@@ -18,7 +18,7 @@ class ErrorResponseBuilder extends ResponseBuilder
             "detail" => [
                 "status" => $resource['status'],
                 "code" => $resource['code'],
-                "message" => "no~"
+                "message" => "Something went wrong."
             ]
         ];
 

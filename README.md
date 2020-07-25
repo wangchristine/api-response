@@ -23,7 +23,7 @@ You can choose what you prefer:
 
 ### Example:
 
-1. general
+> General
  
 ```php
  // You can set header and option in construct.
@@ -38,7 +38,8 @@ return $this->response->success([1, 2], 201, "code201")->json();
 return $this->response->error("Oh no", 501, "code501")->json();
 ```
 
-2. inline
+> Inline
+
 ```php
 return $this->response->success([1, 2])->setHeader(["lang" => "en"])->setOption(JSON_UNESCAPED_UNICODE)->json();
 return $this->response->error("Oh no", 501, "code501")->setHeader(["lang" => "en"])->setOption(JSON_UNESCAPED_UNICODE)->json();
@@ -54,7 +55,7 @@ return $this->response->error("Oh no", 501, "code501")->setHeader(["lang" => "en
     "detail": {
         "status": 200,
         "code": "200",
-        "message": "ya~"
+        "message": "OK"
     },
     "data": {
         ...
@@ -72,7 +73,7 @@ return $this->response->error("Oh no", 501, "code501")->setHeader(["lang" => "en
     "detail": {
         "status": 404,
         "code": "404",
-        "message": "no~"
+        "message": "Something went wrong."
     },
     "error": {
         ...
