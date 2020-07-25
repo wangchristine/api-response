@@ -42,17 +42,4 @@ abstract class ApiResponseBase
         return $this;
     }
 
-//    private function setData($data)
-//    {
-//        $this->data = $data;
-//
-//        if ($data instanceof LengthAwarePaginator) {
-//            return $this->formatPaginate();
-//        } else if ($data instanceof Paginator) {
-//            return $this->formatSimplePaginate();
-//        } else {
-//            return $this->format();
-//        }
-//    }
-
 }
