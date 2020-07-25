@@ -29,6 +29,7 @@ You can choose what you prefer:
  // You can set header and option in construct.
 $this->response->setHeader(["lang" => "en"])->setOption(JSON_UNESCAPED_UNICODE);
 
+// Basic usage.
 return $this->response->success([1, 2])->json();
 return $this->response->error("Oh no")->json();
 
@@ -49,17 +50,17 @@ return $this->response->error("Oh no", 501, "code501")->setHeader(["lang" => "en
 
 ```json
  {
- 	"success": true
- 	"detail": {
- 		"status": 200,
- 		"code": "200",
- 		"message": "ya~"
- 	}
- 	"data": {
- 		// ~~~
- 	},
- 	"link": null,
- 	"meta": null
+    "success": true,
+    "detail": {
+        "status": 200,
+        "code": "200",
+        "message": "ya~"
+    },
+    "data": {
+        ...
+    },
+    "link": null,
+    "meta": null
  }
 ```
 
@@ -67,17 +68,17 @@ return $this->response->error("Oh no", 501, "code501")->setHeader(["lang" => "en
 
 ```json
  {
- 	"success": false
- 	"detail": {
- 		"status": 404,
- 		"code": "404",
- 		"message": "no~"
- 	}
- 	"error": {
-      // ~~~
-  },
- 	"link": null,
- 	"meta": null
+    "success": false,
+    "detail": {
+        "status": 404,
+        "code": "404",
+        "message": "no~"
+    },
+    "error": {
+        ...
+    },
+    "link": null,
+    "meta": null
  }
 ```
 
