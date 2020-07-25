@@ -1,12 +1,12 @@
 {
-    "name": "chris/api-response",
+    "name": "chhw/api-response",
     "description": "This package gives you an easier way to return RESTful API response.",
     "keywords": ["laravel", "api", "response", "restful"],
     "license": "MIT",
     "minimum-stability": "stable",
     "require": {
         "php": "^7.0.0",
-        "laravel/framework": "^5.0"
+        "laravel/framework": "^5.0|^6.0|^7.0"
     },
     "autoload": {
         "psr-4": {

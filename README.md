@@ -1,19 +1,51 @@
- 
- Can:
- 1. construct: $this->response = new ApiResponse
- 2. injection: ApiResponse $response
+# Laravel Api Response
 
- 1.
-```php
- $this->response->setHeader([])->setOption(0);
- $this->response->success([1,2], status, code)->json();
- $this->response->error("WTF")->json();
+> This package gives you an easier way to return RESTful API response.
+
+# Installation
+
+Install by composer
+
+```bash
+    $ composer require chhw/api-response
 ```
- 2.
+
+# Usage
+
+> Should be used in your controller.
+
+### Define:
+
+You can choose what you prefer:
+
+ 1. construct: ```$this->response = new ApiResponse```
+ 2. injection: ```ApiResponse $response```
+
+### Example:
+
+1. general
+ 
 ```php
- $this->response->setHeader([])->setOption(0)->success(data, status, code)->json();
- $this->response->setHeader([])->setOption(0)->error("WTF", status, code)->json();
+ // You can set header and option in construct.
+$this->response->setHeader(["lang" => "en"])->setOption(JSON_UNESCAPED_UNICODE);
+
+return $this->response->success([1, 2])->json();
+return $this->response->error("Oh no")->json();
+
+// Custom status and code.
+return $this->response->success([1, 2], 201, "code201")->json();
+return $this->response->error("Oh no", 501, "code501")->json();
 ```
+
+2. inline
+```php
+return $this->response->success([1, 2])->setHeader(["lang" => "en"])->setOption(JSON_UNESCAPED_UNICODE)->json();
+return $this->response->error("Oh no", 501, "code501")->setHeader(["lang" => "en"])->setOption(JSON_UNESCAPED_UNICODE)->json();
+```
+
+### Response:
+
+> Success
 
 ```json
  {
@@ -29,8 +61,11 @@
  	"link": null,
  	"meta": null
  }
+```
 
+> Error
 
+```json
  {
  	"success": false
  	"detail": {
@@ -44,4 +79,17 @@
  	"link": null,
  	"meta": null
  }
+```
+
+# Supported methods
+
+> $data can be array, string or object etc.
+
+> $code for someone who want to custom internal http code. 
+
+```php
+public function success($data = [], $status = 200, $code = "200");
+public function error($data = [], $status = 500, $code = "500");
+public function setHeader($headers);
+public function setOption($options);
 ```
