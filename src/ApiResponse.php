@@ -11,7 +11,12 @@ class ApiResponse extends ApiResponseBase implements JsonResponse
         $this->success = true;
         $this->data = $data;
         $this->status = $status;
-        $this->code = $code;
+
+        if (func_num_args() === 2) {
+            $this->code = (string)$status;
+        } else {
+            $this->code = $code;
+        }
 
         return $this;
     }
@@ -21,7 +26,12 @@ class ApiResponse extends ApiResponseBase implements JsonResponse
         $this->success = false;
         $this->data = $data;
         $this->status = $status;
-        $this->code = $code;
+
+        if (func_num_args() === 2) {
+            $this->code = (string)$status;
+        } else {
+            $this->code = $code;
+        }
 
         return $this;
     }
