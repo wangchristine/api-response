@@ -12,5 +12,12 @@
         "psr-4": {
             "CHHW\\ApiResponse\\": "src"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CHHW\\ApiResponse\\ApiResponseServiceProvider"
+            ]
+        }
     }
 }
