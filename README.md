@@ -95,3 +95,23 @@ public function error($data = [], $status = 500, $code = "500");
 public function setHeader($headers);
 public function setOption($options);
 ```
+
+# Collection Paginator:
+
+> Collection Paginator usage just like model !
+
+> You can use Api Response and Collection Paginator together.
+
+### Example:
+
+```php
+collect([1,2,3,4,5])->paginate(10)
+collect([1,2,3,4,5])->simplePaginate(15)
+```
+
+### Supported methods:
+
+```php
+paginate($perPage = 15, $pageName = 'page', $page = null);
+simplePaginate($perPage = 15, $pageName = 'page', $page = null);
+```
