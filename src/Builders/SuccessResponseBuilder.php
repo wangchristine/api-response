@@ -21,7 +21,7 @@ class SuccessResponseBuilder extends ResponseBuilder
             "detail" => [
                 "status" => $resource['status'],
                 "code" => $resource['code'],
-                "message" => "OK"
+                "message" => config('response.code.' . $resource['code']) ?? "OK",
             ]
         ];
 

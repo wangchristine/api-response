@@ -10,6 +10,22 @@ Install by composer
     $ composer require chhw/api-response
 ```
 
+If you are under Laravel 5.5, please add this code in `config/app.php` below.
+
+```php
+    <?php
+        'providers' => [
+            CHHW\ApiResponse\ApiResponseServiceProvider::class,
+        ],
+    ?>
+```
+
+[Option] Get response config to customize debug message.
+
+```bash
+    $ php artisan vendor:publish --provider="CHHW\ApiResponse\ApiResponseServiceProvider"
+```
+
 # Usage
 
 > Should be used in your controller.
@@ -43,6 +59,22 @@ return $this->response->error("Oh no", 501, "code501")->json();
 ```php
 return $this->response->success([1, 2])->setHeader(["lang" => "en"])->setOption(JSON_UNESCAPED_UNICODE)->json();
 return $this->response->error("Oh no", 501, "code501")->setHeader(["lang" => "en"])->setOption(JSON_UNESCAPED_UNICODE)->json();
+```
+
+### [Option] Custom debug message:
+
+If you have custom code, by default it will match `config/response.php` settings for debug message:
+
+```php
+// Controller
+return $this->response->error([1, 2], 500, 'custom500')->json();
+
+// config/response.php
+return [
+    'code' => [
+        'custom500' => 'Internal Server Error',
+    ]
+];
 ```
 
 ### Response:
@@ -96,7 +128,7 @@ public function setHeader($headers);
 public function setOption($options);
 ```
 
-# Collection Paginator:
+# Collection Paginator
 
 > Collection Paginator usage just like model !
 

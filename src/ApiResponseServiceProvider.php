@@ -26,6 +26,8 @@ class ApiResponseServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerPublishing();
+
         Collection::macro('paginate', function ($perPage = 15, $pageName = 'page', $page = null) {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
             $total = $this->count();
@@ -50,5 +52,17 @@ class ApiResponseServiceProvider extends ServiceProvider
 
             return $paginator;
         });
+    }
+
+    /**
+     * Register the package's publishable resources.
+     *
+     * @return void
+     */
+    private function registerPublishing()
+    {
+        $this->publishes([
+            __DIR__.'/config/response.php' => config_path('response.php'),
+        ]);
     }
 }
