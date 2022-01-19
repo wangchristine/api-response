@@ -128,6 +128,11 @@ public function setHeader($headers);
 public function setOption($options);
 ```
 
+# Log tracing
+
+> Response header with an unique UUID4: `X-Trace-Id`
+
+
 # Collection Paginator
 
 > Collection Paginator usage just like model !

@@ -4,6 +4,7 @@ namespace CHHW\ApiResponse;
 
 use CHHW\ApiResponse\Builders\ErrorResponseBuilder;
 use CHHW\ApiResponse\Builders\SuccessResponseBuilder;
+use Ramsey\Uuid\Uuid;
 
 abstract class ApiResponseBase
 {
@@ -25,7 +26,7 @@ abstract class ApiResponseBase
                 'code' => $this->code
             ]),
             $this->status,
-            $this->headers,
+            array_merge($this->headers, $this->baseHeaders()),
             $this->options
         );
     }
@@ -42,4 +43,17 @@ abstract class ApiResponseBase
         return $this;
     }
 
+    protected function baseHeaders()
+    {
+        return [
+            "X-Trace-Id" => $this->getTraceId(),
+        ];
+    }
+
+    protected function getTraceId()
+    {
+        defined('X_Trace_Id') || define('X_Trace_Id', Uuid::uuid4()->toString());
+        
+        return X_Trace_Id;
+    }
 }
