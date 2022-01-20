@@ -1,7 +1,7 @@
 {
     "name": "chhw/api-response",
     "description": "This package gives you an easier way to return RESTful API response.",
-    "keywords": ["laravel", "api", "response", "restful"],
+    "keywords": ["laravel", "api", "response", "restful", "lumen"],
     "license": "MIT",
     "minimum-stability": "stable",
     "require": {
