@@ -62,7 +62,7 @@ class ApiResponseServiceProvider extends ServiceProvider
     private function registerPublishing()
     {
         $this->publishes([
-            __DIR__.'/config/response.php' => config_path('response.php'),
+            __DIR__.'/config/response.php' => app()->configPath('response.php'),
         ]);
     }
 }

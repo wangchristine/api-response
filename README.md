@@ -26,6 +26,17 @@ If you are under Laravel 5.5, please add this code in `config/app.php` below.
     $ php artisan vendor:publish --provider="CHHW\ApiResponse\ApiResponseServiceProvider"
 ```
 
+## Also support Lumen now!!
+
+In `bootstrap/app.php`, you should:
+1. add `$app->register(CHHW\ApiResponse\ApiResponseServiceProvider::class);`
+
+[Option] Get response config to customize debug message.
+
+```bash
+    $ cp vendor/chhw/api-response/src/config/response.php config/response.php
+```
+
 # Usage
 
 > Should be used in your controller.
